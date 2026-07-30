@@ -26,13 +26,18 @@ const TAGLINES = [
 ]
 
 const STATS = [
-  { value: 10,   suffix: '', label: 'Dishes'     },
+  { value: 10,   suffix: '+', label: 'Dishes'     },
   { value: 10,   suffix: '',  label: 'Cuisines'   },
   { value: 5,    suffix: '',  label: 'Diet Types'  },
   { value: 100,  suffix: '%', label: 'Flavour'    },
 ]
 
-STATS[0].value = data.dishes.length
+const STAT_ROUNDING = 10
+function roundDownTo(number, roundTarget) {
+  return Math.floor(number / roundTarget) * roundTarget
+}
+
+STATS[0].value = roundDownTo(data.dishes.length, STAT_ROUNDING)
 
 const countries = new Set()
 const dietTypes = new Set()
@@ -172,7 +177,7 @@ const Home = () => {
 
         <div className={`features-grid ${scrolled ? 'features-visible' : ''}`}>
           {[
-            { icon: '🌍', title: 'Global Cuisines',   desc: 'Dishes from 10+ countries — India, Japan, Italy, Thailand, Jamaica and more.' },
+            { icon: '🌍', title: 'Global Cuisines',   desc: 'Dishes from ' + roundDownTo(STATS[1].value, STAT_ROUNDING) + '+ countries — India, Japan, Italy, Thailand, Jamaica and more.' },
             { icon: '🔍', title: 'Smart Filtering',   desc: 'Filter by spice, allergens, diet type, ingredients, country, and price.' },
             { icon: '🥗', title: 'Diet Friendly',     desc: 'Vegan, Vegetarian, Pescatarian, and Gluten-Free options clearly labelled.' },
             { icon: '💰', title: 'Great Value',       desc: 'Fair prices across every course — from starters all the way to desserts.' },
