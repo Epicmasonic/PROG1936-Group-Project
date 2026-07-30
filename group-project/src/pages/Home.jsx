@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import data from '../data/db.json'
 import './Home.css'
 
 // Floating food emojis in the hero background
@@ -25,11 +26,29 @@ const TAGLINES = [
 ]
 
 const STATS = [
-  { value: 10,   suffix: '+', label: 'Dishes'     },
+  { value: 10,   suffix: '', label: 'Dishes'     },
   { value: 10,   suffix: '',  label: 'Cuisines'   },
   { value: 5,    suffix: '',  label: 'Diet Types'  },
   { value: 100,  suffix: '%', label: 'Flavour'    },
 ]
+
+STATS[0].value = data.dishes.length
+
+const countries = new Set()
+const dietTypes = new Set()
+
+for (const dish of data.dishes) {
+  if (dish.country) {
+    countries.add(dish.country)
+  }
+
+  for (const type of dish.dietType || []) {
+    dietTypes.add(type)
+  }
+}
+
+STATS[1].value = countries.size
+STATS[2].value = dietTypes.size
 
 // Animated counter hook
 const useCounter = (target, duration = 1500) => {
