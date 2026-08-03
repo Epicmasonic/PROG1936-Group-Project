@@ -28,6 +28,66 @@ const COURSE_ICONS = { All: '🍽️', Breakfast: '🍳', Starter: '🥣', Main:
 
 const MAX_PRICE = 20
 
+const CART_PREVIEW = [
+  { id: 1, name: 'Butter Chicken', qty: 1, price: 17.5 },
+  { id: 2, name: 'Mango Sticky Rice', qty: 2, price: 9.5 },
+  { id: 3, name: 'Veggie Tempura', qty: 1, price: 12.0 },
+]
+
+const CartItemRow = ({ item }) => (
+  <div className="cart-item-row">
+    <div className="cart-item-meta">
+      <span className="cart-item-name">{item.name}</span>
+      <span className="cart-item-qty">Qty {item.qty}</span>
+    </div>
+    <span className="cart-item-price">${(item.qty * item.price).toFixed(2)}</span>
+  </div>
+)
+
+const CartPanel = ({ items, cartOpen, onClose }) => {
+  const subtotal = items.reduce((sum, item) => sum + item.qty * item.price, 0)
+  const tax = subtotal * 0.13
+  const total = subtotal + tax
+
+  return (
+    <aside className={`cart-panel ${cartOpen ? 'cart-open' : ''}`}>
+      <div className="cart-panel-header">
+        <div>
+          <p className="cart-eyebrow">Your Order</p>
+          <h2 className="cart-title">Cart</h2>
+        </div>
+        <div className="cart-header-actions">
+          <span className="cart-count">{items.length} items</span>
+          <button className="cart-close-btn" type="button" onClick={onClose}>✕</button>
+        </div>
+      </div>
+
+      <div className="cart-items-list">
+        {items.map(item => (
+          <CartItemRow key={item.id} item={item} />
+        ))}
+      </div>
+
+      <div className="cart-summary-box">
+        <div className="summary-row">
+          <span>Subtotal</span>
+          <strong>${subtotal.toFixed(2)}</strong>
+        </div>
+        <div className="summary-row">
+          <span>Estimated tax</span>
+          <strong>${tax.toFixed(2)}</strong>
+        </div>
+        <div className="summary-row total-row">
+          <span>Total</span>
+          <strong>${total.toFixed(2)}</strong>
+        </div>
+      </div>
+
+      <button className="checkout-btn" type="button">Proceed to Checkout</button>
+    </aside>
+  )
+}
+
 // ── DishCard ───────────────────────────────────────────────────────────
 const DishCard = ({ dish }) => {
   const spice = SPICE[dish.spiceLevel] || SPICE['None']
@@ -90,6 +150,8 @@ const DishCard = ({ dish }) => {
             {dish.ingredients.join(', ')}
           </p>
         </details>
+
+        <button className="add-cart-btn" type="button">Add to cart</button>
       </div>
     </div>
   )
@@ -118,6 +180,7 @@ const Menu = () => {
   const [maxPrice,        setMaxPrice]        = useState(MAX_PRICE)
   const [sortBy,          setSortBy]          = useState('default')
   const [sidebarOpen,     setSidebarOpen]     = useState(false)
+  const [cartOpen,        setCartOpen]        = useState(false)
 
   // ── Toggle helpers ──
   const toggleDietType = (dt) =>
@@ -209,6 +272,10 @@ const Menu = () => {
 
           <button className="filter-toggle-btn" onClick={() => setSidebarOpen(o => !o)}>
             {sidebarOpen ? '✕ Close' : '⚙️ Filters'}
+          </button>
+
+          <button className="cart-toggle-btn" onClick={() => setCartOpen(o => !o)}>
+            🛒 Cart
           </button>
         </div>
       </div>
@@ -368,6 +435,8 @@ const Menu = () => {
             </div>
           )}
         </div>
+
+        <CartPanel items={CART_PREVIEW} cartOpen={cartOpen} onClose={() => setCartOpen(false)} />
 
       </div>
     </div>

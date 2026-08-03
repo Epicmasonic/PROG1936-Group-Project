@@ -19,7 +19,6 @@
   background: #0f3460;
   padding: 28px 32px 24px;
 }
-.menu-header-inner {}
 .menu-title {
   font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 800;
@@ -63,6 +62,19 @@
 }
 .filter-toggle-btn:hover { background: rgba(255,255,255,0.18); }
 
+.cart-toggle-btn {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+  color: #e2e8f0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+}
+.cart-toggle-btn:hover { background: rgba(255,255,255,0.18); }
+
 /* ── Course tabs ── */
 .course-tabs {
   display: flex;
@@ -97,9 +109,10 @@
 
 /* ── Main layout ── */
 .menu-layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
   gap: 0;
-  max-width: 1400px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 0;
   align-items: flex-start;
@@ -248,9 +261,161 @@
 
 /* ── Dish grid ── */
 .dish-grid-wrap {
-  flex: 1;
   padding: 28px 28px 40px;
   min-width: 0;
+}
+
+.cart-panel {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 290px;
+  height: 100vh;
+  background: #fff;
+  border-left: 1px solid #e2e8f0;
+  padding: 80px 20px 24px;
+  box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  z-index: 200;
+}
+
+.cart-panel.cart-open {
+  right: 0;
+}
+
+.cart-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-close-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: #0f3460;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.cart-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.cart-eyebrow {
+  margin: 0 0 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #e94560;
+}
+
+.cart-title {
+  margin: 0;
+  color: #0f3460;
+  font-size: 1.35rem;
+}
+
+.cart-count {
+  white-space: nowrap;
+  font-size: 0.8rem;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.cart-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.cart-item-row:last-child {
+  border-bottom: none;
+}
+
+.cart-item-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cart-item-name {
+  font-weight: 700;
+  color: #0f3460;
+  font-size: 0.92rem;
+}
+
+.cart-item-qty {
+  font-size: 0.76rem;
+  color: #64748b;
+}
+
+.cart-item-price {
+  font-weight: 800;
+  color: #e94560;
+}
+
+.cart-summary-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.summary-row:last-child {
+  margin-bottom: 0;
+}
+
+.total-row {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f3460;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #dbe4f0;
+}
+
+.checkout-btn {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e94560, #a21caf);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 13px 16px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(233, 69, 96, 0.22);
 }
 
 .dish-grid {
@@ -430,6 +595,25 @@
   font-weight: 500;
 }
 
+/* Add to cart button */
+.add-cart-btn {
+  margin-top: 4px;
+  border: none;
+  border-radius: 12px;
+  background: #0f3460;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 11px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.add-cart-btn:hover {
+  background: #e94560;
+  transform: translateY(-1px);
+}
+
 /* Ingredients details */
 .ingredients-details {
   margin-top: 4px;
@@ -453,6 +637,12 @@
 /* ════════════════════════════════════════
    RESPONSIVE
 ════════════════════════════════════════ */
+@media (max-width: 1180px) {
+  .menu-layout {
+    grid-template-columns: 280px minmax(0, 1fr);
+  }
+}
+
 @media (max-width: 900px) {
   .filter-toggle-btn { display: block; }
 
@@ -471,6 +661,36 @@
 
   .dish-grid-wrap { padding: 20px 16px 40px; }
   .menu-layout { display: block; }
+}
+
+@media (max-width: 860px) {
+  .menu-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-sidebar {
+    position: static;
+    max-height: none;
+    min-height: auto;
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+    width: 100%;
+    display: none;
+  }
+
+  .filter-sidebar.sidebar-open {
+    display: block;
+  }
+
+  .filter-toggle-btn {
+    display: inline-flex;
+  }
+
+  .cart-panel {
+    width: 100%;
+    right: -100%;
+    padding: 80px 16px 24px;
+  }
 }
 
 @media (max-width: 600px) {
