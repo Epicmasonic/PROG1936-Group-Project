@@ -28,23 +28,24 @@ const COURSE_ICONS = { All: '🍽️', Breakfast: '🍳', Starter: '🥣', Main:
 
 const MAX_PRICE = 20
 
-const CART_PREVIEW = [
-  { id: 1, name: 'Butter Chicken', qty: 1, price: 17.5 },
-  { id: 2, name: 'Mango Sticky Rice', qty: 2, price: 9.5 },
-  { id: 3, name: 'Veggie Tempura', qty: 1, price: 12.0 },
-]
-
-const CartItemRow = ({ item }) => (
+const CartItemRow = ({ item, onAddItem, onRemoveItem }) => (
   <div className="cart-item-row">
     <div className="cart-item-meta">
       <span className="cart-item-name">{item.name}</span>
       <span className="cart-item-qty">Qty {item.qty}</span>
     </div>
-    <span className="cart-item-price">${(item.qty * item.price).toFixed(2)}</span>
+    <div className="cart-item-actions">
+      <div className="cart-stepper">
+        <button className="cart-stepper-btn" type="button" onClick={() => onRemoveItem(item.id)}>-</button>
+        <span className="cart-stepper-value">{item.qty}</span>
+        <button className="cart-stepper-btn" type="button" onClick={() => onAddItem(item.id)}>+</button>
+      </div>
+      <span className="cart-item-price">${(item.qty * item.price).toFixed(2)}</span>
+    </div>
   </div>
 )
 
-const CartPanel = ({ items, cartOpen, onClose }) => {
+const CartPanel = ({ items, cartOpen, onClose, onAddItem, onRemoveItem }) => {
   const subtotal = items.reduce((sum, item) => sum + item.qty * item.price, 0)
   const tax = subtotal * 0.13
   const total = subtotal + tax
@@ -64,7 +65,12 @@ const CartPanel = ({ items, cartOpen, onClose }) => {
 
       <div className="cart-items-list">
         {items.map(item => (
-          <CartItemRow key={item.id} item={item} />
+          <CartItemRow
+            key={item.id}
+            item={item}
+            onAddItem={onAddItem}
+            onRemoveItem={onRemoveItem}
+          />
         ))}
       </div>
 
@@ -89,7 +95,7 @@ const CartPanel = ({ items, cartOpen, onClose }) => {
 }
 
 // ── DishCard ───────────────────────────────────────────────────────────
-const DishCard = ({ dish }) => {
+const DishCard = ({ dish, onAddToCart }) => {
   const spice = SPICE[dish.spiceLevel] || SPICE['None']
 
   return (
@@ -151,7 +157,7 @@ const DishCard = ({ dish }) => {
           </p>
         </details>
 
-        <button className="add-cart-btn" type="button">Add to cart</button>
+        <button className="add-cart-btn" type="button" onClick={() => onAddToCart(dish)}>Add to cart</button>
       </div>
     </div>
   )
@@ -180,6 +186,7 @@ const Menu = () => {
   const [maxPrice,        setMaxPrice]        = useState(MAX_PRICE)
   const [sortBy,          setSortBy]          = useState('default')
   const [sidebarOpen,     setSidebarOpen]     = useState(false)
+  const [cart,            setCart]            = useState([])
   const [cartOpen,        setCartOpen]        = useState(false)
 
   // ── Toggle helpers ──
@@ -242,6 +249,34 @@ const Menu = () => {
 
     return result
   }, [dishes, search, activeCourse, spiceLevel, country, dietTypes, glutenFree, excludeAllergens, maxPrice, sortBy])
+
+  const addToCart = (dish) => {
+    setCart(prev => {
+      const existingItem = prev.find(item => item.id === dish.id)
+
+      if (existingItem) {
+        return prev.map(item =>
+          item.id === dish.id ? { ...item, qty: item.qty + 1 } : item
+        )
+      }
+
+      return [...prev, { ...dish, qty: 1 }]
+    })
+  }
+
+  const addCartQty = (id) => {
+    setCart(prev => prev.map(item =>
+      item.id === id ? { ...item, qty: item.qty + 1 } : item
+    ))
+  }
+
+  const removeFromCart = (id) => {
+    setCart(prev => prev.flatMap(item => {
+      if (item.id !== id) return [item]
+      if (item.qty > 1) return [{ ...item, qty: item.qty - 1 }]
+      return []
+    }))
+  }
 
   // ── Render ──
   return (
@@ -430,13 +465,19 @@ const Menu = () => {
           ) : (
             <div className="dish-grid">
               {filtered.map(dish => (
-                <DishCard key={dish.id} dish={dish} />
+                <DishCard key={dish.id} dish={dish} onAddToCart={addToCart} />
               ))}
             </div>
           )}
         </div>
 
-        <CartPanel items={CART_PREVIEW} cartOpen={cartOpen} onClose={() => setCartOpen(false)} />
+        <CartPanel
+          items={cart}
+          cartOpen={cartOpen}
+          onClose={() => setCartOpen(false)}
+          onAddItem={addCartQty}
+          onRemoveItem={removeFromCart}
+        />
 
       </div>
     </div>

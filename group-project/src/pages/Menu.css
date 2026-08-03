@@ -370,6 +370,38 @@
   color: #64748b;
 }
 
+.cart-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.cart-stepper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-stepper-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 8px;
+  background: #e2e8f0;
+  color: #0f3460;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cart-stepper-value {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 700;
+  color: #0f3460;
+}
+
 .cart-item-price {
   font-weight: 800;
   color: #e94560;
