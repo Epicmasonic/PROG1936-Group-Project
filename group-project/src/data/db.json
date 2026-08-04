@@ -1,0 +1,1307 @@
+{
+  "dishes": [
+    {
+      "id": 1,
+      "name": "Butter Chicken",
+      "description": "Tender chicken pieces simmered in a rich, creamy tomato-based sauce with aromatic spices.",
+      "country": "India",
+      "course": "Main",
+      "price": 16.99,
+      "spiceLevel": "Medium",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Dairy",
+        "Tree Nuts"
+      ],
+      "ingredients": [
+        "chicken",
+        "tomato",
+        "cream",
+        "butter",
+        "onion",
+        "garlic",
+        "ginger",
+        "garam masala",
+        "cumin",
+        "coriander",
+        "turmeric",
+        "chili powder",
+        "cashews"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Butter+Chicken"
+    },
+    {
+      "id": 2,
+      "name": "Salmon Sushi Roll",
+      "description": "Fresh Atlantic salmon rolled with seasoned sushi rice, cucumber, and avocado, wrapped in nori seaweed.",
+      "country": "Japan",
+      "course": "Main",
+      "price": 14.99,
+      "spiceLevel": "None",
+      "dietType": [
+        "Pescatarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Fish",
+        "Gluten",
+        "Soy",
+        "Sesame"
+      ],
+      "ingredients": [
+        "salmon",
+        "sushi rice",
+        "nori",
+        "cucumber",
+        "avocado",
+        "soy sauce",
+        "sesame seeds",
+        "rice vinegar",
+        "sugar",
+        "wasabi",
+        "ginger"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Salmon+Sushi+Roll"
+    },
+    {
+      "id": 3,
+      "name": "Margherita Pizza",
+      "description": "Classic Neapolitan pizza with San Marzano tomato sauce, fresh mozzarella, and basil on a thin hand-tossed crust.",
+      "country": "Italy",
+      "course": "Main",
+      "price": 13.49,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Dairy"
+      ],
+      "ingredients": [
+        "pizza dough",
+        "San Marzano tomatoes",
+        "fresh mozzarella",
+        "fresh basil",
+        "olive oil",
+        "salt",
+        "garlic"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Margherita+Pizza"
+    },
+    {
+      "id": 4,
+      "name": "Pad Thai",
+      "description": "Stir-fried rice noodles with shrimp, tofu, eggs, bean sprouts, and peanuts in a tangy tamarind sauce.",
+      "country": "Thailand",
+      "course": "Main",
+      "price": 15.49,
+      "spiceLevel": "Mild",
+      "dietType": [
+        "Pescatarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Shellfish",
+        "Eggs",
+        "Peanuts",
+        "Soy",
+        "Gluten"
+      ],
+      "ingredients": [
+        "rice noodles",
+        "shrimp",
+        "tofu",
+        "eggs",
+        "bean sprouts",
+        "peanuts",
+        "tamarind paste",
+        "fish sauce",
+        "palm sugar",
+        "lime",
+        "green onion",
+        "chili flakes",
+        "soy sauce"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Pad+Thai"
+    },
+    {
+      "id": 5,
+      "name": "Falafel Wrap",
+      "description": "Crispy oven-baked falafel balls wrapped in a warm pita with hummus, tabbouleh, pickled vegetables, and tahini sauce.",
+      "country": "Lebanon",
+      "course": "Main",
+      "price": 11.99,
+      "spiceLevel": "Mild",
+      "dietType": [
+        "Vegan",
+        "Vegetarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Sesame"
+      ],
+      "ingredients": [
+        "chickpeas",
+        "pita bread",
+        "parsley",
+        "coriander",
+        "onion",
+        "garlic",
+        "cumin",
+        "tahini",
+        "lemon juice",
+        "tomato",
+        "cucumber",
+        "pickled turnip",
+        "olive oil"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Falafel+Wrap"
+    },
+    {
+      "id": 6,
+      "name": "Beef Street Tacos",
+      "description": "Corn tortillas loaded with slow-braised spiced beef, diced onion, fresh cilantro, salsa roja, and a squeeze of lime.",
+      "country": "Mexico",
+      "course": "Main",
+      "price": 12.99,
+      "spiceLevel": "Hot",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": true,
+      "allergens": [],
+      "ingredients": [
+        "corn tortillas",
+        "beef chuck",
+        "onion",
+        "cilantro",
+        "chipotle peppers",
+        "adobo sauce",
+        "garlic",
+        "lime",
+        "cumin",
+        "oregano",
+        "tomato",
+        "jalape\u00f1o",
+        "avocado"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Beef+Street+Tacos"
+    },
+    {
+      "id": 7,
+      "name": "French Onion Soup",
+      "description": "Classic slow-cooked caramelized onion soup in a rich beef broth, topped with a toasted baguette crouton and melted Gruy\u00e8re cheese.",
+      "country": "France",
+      "course": "Starter",
+      "price": 9.49,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Dairy"
+      ],
+      "ingredients": [
+        "yellow onions",
+        "beef broth",
+        "baguette",
+        "Gruy\u00e8re cheese",
+        "butter",
+        "white wine",
+        "thyme",
+        "bay leaf",
+        "garlic",
+        "flour"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=French+Onion+Soup"
+    },
+    {
+      "id": 8,
+      "name": "Churros with Chocolate Sauce",
+      "description": "Golden fried dough sticks dusted with cinnamon sugar, served with a warm dark chocolate dipping sauce.",
+      "country": "Spain",
+      "course": "Dessert",
+      "price": 7.99,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Dairy",
+        "Eggs"
+      ],
+      "ingredients": [
+        "flour",
+        "water",
+        "butter",
+        "eggs",
+        "sugar",
+        "cinnamon",
+        "salt",
+        "dark chocolate",
+        "heavy cream",
+        "vegetable oil"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Churros"
+    },
+    {
+      "id": 9,
+      "name": "Jerk Chicken",
+      "description": "Chicken marinated overnight in a fiery Scotch bonnet and allspice jerk rub, grilled over charcoal and served with rice and peas.",
+      "country": "Jamaica",
+      "course": "Main",
+      "price": 17.49,
+      "spiceLevel": "Extra Hot",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": true,
+      "allergens": [],
+      "ingredients": [
+        "chicken",
+        "Scotch bonnet peppers",
+        "allspice",
+        "thyme",
+        "garlic",
+        "ginger",
+        "onion",
+        "soy sauce",
+        "brown sugar",
+        "cinnamon",
+        "nutmeg",
+        "rice",
+        "kidney beans",
+        "coconut milk"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Jerk+Chicken"
+    },
+    {
+      "id": 10,
+      "name": "Avocado Toast with Poached Egg",
+      "description": "Sourdough toast topped with smashed seasoned avocado, a soft poached egg, chili flakes, and microgreens.",
+      "country": "Australia",
+      "course": "Breakfast",
+      "price": 10.49,
+      "spiceLevel": "Mild",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Eggs"
+      ],
+      "ingredients": [
+        "sourdough bread",
+        "avocado",
+        "eggs",
+        "lemon juice",
+        "chili flakes",
+        "microgreens",
+        "olive oil",
+        "salt",
+        "black pepper",
+        "garlic"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Avocado+Toast"
+    },
+    {
+      "id": 11,
+      "name": "Spanakopita",
+      "description": "Flaky phyllo pastry filled with a savory mixture of spinach, feta cheese, onions, and fresh herbs.",
+      "country": "Greece",
+      "course": "Starter",
+      "price": 9.99,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Dairy",
+        "Eggs"
+      ],
+      "ingredients": [
+        "phyllo dough",
+        "spinach",
+        "feta cheese",
+        "onion",
+        "dill",
+        "parsley",
+        "eggs",
+        "olive oil",
+        "garlic",
+        "nutmeg",
+        "salt",
+        "black pepper"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Spanakopita"
+    },
+    {
+      "id": 12,
+      "name": "Moroccan Lamb Tagine",
+      "description": "Slow-braised lamb shoulder with apricots, almonds, and warm North African spices served over fluffy couscous.",
+      "country": "Morocco",
+      "course": "Main",
+      "price": 19.99,
+      "spiceLevel": "Medium",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Tree Nuts"
+      ],
+      "ingredients": [
+        "lamb shoulder",
+        "dried apricots",
+        "almonds",
+        "onion",
+        "garlic",
+        "ginger",
+        "cinnamon",
+        "cumin",
+        "saffron",
+        "couscous",
+        "cilantro",
+        "honey",
+        "olive oil"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Moroccan+Lamb+Tagine"
+    },
+    {
+      "id": 13,
+      "name": "Bibimbap",
+      "description": "A vibrant Korean rice bowl topped with saut\u00e9ed vegetables, a fried egg, gochujang sauce, and sesame seeds.",
+      "country": "Korea",
+      "course": "Main",
+      "price": 15.99,
+      "spiceLevel": "Hot",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Eggs",
+        "Sesame",
+        "Soy"
+      ],
+      "ingredients": [
+        "steamed rice",
+        "spinach",
+        "carrots",
+        "zucchini",
+        "bean sprouts",
+        "shiitake mushrooms",
+        "egg",
+        "gochujang",
+        "sesame oil",
+        "sesame seeds",
+        "soy sauce",
+        "garlic"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Bibimbap"
+    },
+    {
+      "id": 14,
+      "name": "Pho Bo",
+      "description": "Aromatic Vietnamese beef noodle soup with star anise-infused broth, rice noodles, fresh herbs, and lime.",
+      "country": "Vietnam",
+      "course": "Main",
+      "price": 14.49,
+      "spiceLevel": "Mild",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Soy"
+      ],
+      "ingredients": [
+        "beef brisket",
+        "rice noodles",
+        "beef bones",
+        "star anise",
+        "cinnamon stick",
+        "ginger",
+        "onion",
+        "fish sauce",
+        "bean sprouts",
+        "Thai basil",
+        "lime",
+        "hoisin sauce",
+        "jalape\u00f1o"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Pho+Bo"
+    },
+    {
+      "id": 15,
+      "name": "Ceviche",
+      "description": "Fresh sea bass cured in lime juice with red onion, cilantro, aji amarillo pepper, and sweet potato.",
+      "country": "Peru",
+      "course": "Starter",
+      "price": 13.99,
+      "spiceLevel": "Medium",
+      "dietType": [
+        "Pescatarian"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Fish"
+      ],
+      "ingredients": [
+        "sea bass",
+        "lime juice",
+        "red onion",
+        "cilantro",
+        "aji amarillo",
+        "sweet potato",
+        "corn",
+        "garlic",
+        "ginger",
+        "salt",
+        "lettuce"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Ceviche"
+    },
+    {
+      "id": 16,
+      "name": "Jollof Rice",
+      "description": "West African one-pot rice dish cooked in a rich tomato and pepper base with aromatic spices and grilled plantain.",
+      "country": "Nigeria",
+      "course": "Main",
+      "price": 14.99,
+      "spiceLevel": "Hot",
+      "dietType": [
+        "Vegan",
+        "Vegetarian"
+      ],
+      "isGlutenFree": true,
+      "allergens": [],
+      "ingredients": [
+        "long grain rice",
+        "tomatoes",
+        "tomato paste",
+        "red bell pepper",
+        "scotch bonnet",
+        "onion",
+        "garlic",
+        "ginger",
+        "thyme",
+        "bay leaf",
+        "vegetable oil",
+        "plantain"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Jollof+Rice"
+    },
+    {
+      "id": 17,
+      "name": "Adana Kebab",
+      "description": "Hand-minced lamb skewers seasoned with Aleppo pepper and sumac, grilled over charcoal and served with flatbread.",
+      "country": "Turkey",
+      "course": "Main",
+      "price": 17.99,
+      "spiceLevel": "Hot",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten"
+      ],
+      "ingredients": [
+        "ground lamb",
+        "Aleppo pepper",
+        "sumac",
+        "onion",
+        "garlic",
+        "parsley",
+        "cumin",
+        "salt",
+        "flatbread",
+        "tomato",
+        "grilled pepper",
+        "pomegranate molasses"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Adana+Kebab"
+    },
+    {
+      "id": 18,
+      "name": "A\u00e7a\u00ed Bowl",
+      "description": "Thick frozen a\u00e7a\u00ed blend topped with granola, sliced banana, strawberries, coconut flakes, and honey.",
+      "country": "Brazil",
+      "course": "Breakfast",
+      "price": 11.49,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Tree Nuts"
+      ],
+      "ingredients": [
+        "a\u00e7a\u00ed pur\u00e9e",
+        "banana",
+        "strawberries",
+        "granola",
+        "coconut flakes",
+        "honey",
+        "blueberries",
+        "almond butter",
+        "chia seeds",
+        "oat milk"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Acai+Bowl"
+    },
+    {
+      "id": 19,
+      "name": "Bratwurst with Sauerkraut",
+      "description": "Grilled Thuringian pork sausage on a pretzel bun with tangy sauerkraut and whole grain mustard.",
+      "country": "Germany",
+      "course": "Main",
+      "price": 12.49,
+      "spiceLevel": "None",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten"
+      ],
+      "ingredients": [
+        "pork sausage",
+        "pretzel bun",
+        "sauerkraut",
+        "whole grain mustard",
+        "onion",
+        "caraway seeds",
+        "butter",
+        "beer",
+        "salt",
+        "black pepper"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Bratwurst"
+    },
+    {
+      "id": 20,
+      "name": "Kung Pao Chicken",
+      "description": "Wok-fried chicken with roasted peanuts, dried chilies, and Sichuan peppercorns in a savory-sweet glaze.",
+      "country": "China",
+      "course": "Main",
+      "price": 15.49,
+      "spiceLevel": "Hot",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Peanuts",
+        "Soy",
+        "Gluten",
+        "Sesame"
+      ],
+      "ingredients": [
+        "chicken thigh",
+        "peanuts",
+        "dried red chilies",
+        "Sichuan peppercorns",
+        "soy sauce",
+        "rice vinegar",
+        "sugar",
+        "garlic",
+        "ginger",
+        "green onion",
+        "cornstarch",
+        "sesame oil"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Kung+Pao+Chicken"
+    },
+    {
+      "id": 21,
+      "name": "Doro Wat",
+      "description": "Ethiopian spiced chicken stew slow-simmered with berbere, caramelized onions, and hard-boiled eggs, served with injera.",
+      "country": "Ethiopia",
+      "course": "Main",
+      "price": 16.49,
+      "spiceLevel": "Extra Hot",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Eggs"
+      ],
+      "ingredients": [
+        "chicken legs",
+        "onion",
+        "berbere spice",
+        "niter kibbeh",
+        "garlic",
+        "ginger",
+        "tomato paste",
+        "hard-boiled eggs",
+        "cardamom",
+        "fenugreek",
+        "injera",
+        "lemon juice"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Doro+Wat"
+    },
+    {
+      "id": 22,
+      "name": "Chimichurri Steak",
+      "description": "Grilled Argentine flank steak drizzled with vibrant chimichurri sauce, served with roasted potatoes.",
+      "country": "Argentina",
+      "course": "Main",
+      "price": 22.99,
+      "spiceLevel": "Mild",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": true,
+      "allergens": [],
+      "ingredients": [
+        "flank steak",
+        "parsley",
+        "oregano",
+        "garlic",
+        "red wine vinegar",
+        "olive oil",
+        "red pepper flakes",
+        "potatoes",
+        "salt",
+        "black pepper",
+        "onion"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Chimichurri+Steak"
+    },
+    {
+      "id": 23,
+      "name": "BBQ Pulled Pork Sandwich",
+      "description": "Hickory-smoked pulled pork piled on a brioche bun with tangy coleslaw and house-made barbecue sauce.",
+      "country": "USA",
+      "course": "Main",
+      "price": 14.99,
+      "spiceLevel": "Mild",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Eggs"
+      ],
+      "ingredients": [
+        "pork shoulder",
+        "brioche bun",
+        "barbecue sauce",
+        "apple cider vinegar",
+        "brown sugar",
+        "paprika",
+        "onion",
+        "cabbage",
+        "carrots",
+        "mayonnaise",
+        "mustard",
+        "pickles"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=BBQ+Pulled+Pork"
+    },
+    {
+      "id": 24,
+      "name": "Mango Sticky Rice",
+      "description": "Sweet glutinous rice steamed in coconut milk and served with ripe mango slices and toasted sesame seeds.",
+      "country": "Thailand",
+      "course": "Dessert",
+      "price": 8.99,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegan",
+        "Vegetarian"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Sesame"
+      ],
+      "ingredients": [
+        "sticky rice",
+        "coconut milk",
+        "sugar",
+        "salt",
+        "ripe mango",
+        "sesame seeds",
+        "pandan leaf",
+        "coconut cream"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Mango+Sticky+Rice"
+    },
+    {
+      "id": 25,
+      "name": "Tiramisu",
+      "description": "Layers of espresso-soaked ladyfingers with mascarpone cream, dusted with rich cocoa powder.",
+      "country": "Italy",
+      "course": "Dessert",
+      "price": 9.99,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Dairy",
+        "Eggs"
+      ],
+      "ingredients": [
+        "ladyfingers",
+        "mascarpone cheese",
+        "espresso",
+        "eggs",
+        "sugar",
+        "cocoa powder",
+        "heavy cream",
+        "Marsala wine",
+        "vanilla extract"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Tiramisu"
+    },
+    {
+      "id": 26,
+      "name": "Shakshuka",
+      "description": "Poached eggs nestled in a spiced tomato and bell pepper sauce with crumbled feta and crusty bread.",
+      "country": "Morocco",
+      "course": "Breakfast",
+      "price": 11.99,
+      "spiceLevel": "Medium",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Eggs",
+        "Dairy",
+        "Gluten"
+      ],
+      "ingredients": [
+        "eggs",
+        "tomatoes",
+        "red bell pepper",
+        "onion",
+        "garlic",
+        "cumin",
+        "paprika",
+        "cayenne pepper",
+        "feta cheese",
+        "parsley",
+        "olive oil",
+        "crusty bread"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Shakshuka"
+    },
+    {
+      "id": 27,
+      "name": "Baklava",
+      "description": "Layers of crispy phyllo pastry filled with chopped pistachios and walnuts, soaked in rose-scented honey syrup.",
+      "country": "Turkey",
+      "course": "Dessert",
+      "price": 7.99,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Tree Nuts"
+      ],
+      "ingredients": [
+        "phyllo dough",
+        "pistachios",
+        "walnuts",
+        "butter",
+        "sugar",
+        "honey",
+        "lemon juice",
+        "rose water",
+        "cinnamon",
+        "cardamom"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Baklava"
+    },
+    {
+      "id": 28,
+      "name": "Vegan Buddha Bowl",
+      "description": "Nourishing bowl of roasted sweet potato, quinoa, chickpeas, avocado, kale, and tahini dressing.",
+      "country": "USA",
+      "course": "Main",
+      "price": 13.99,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegan",
+        "Vegetarian"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Sesame"
+      ],
+      "ingredients": [
+        "sweet potato",
+        "quinoa",
+        "chickpeas",
+        "avocado",
+        "kale",
+        "red cabbage",
+        "tahini",
+        "lemon juice",
+        "garlic",
+        "olive oil",
+        "cumin",
+        "smoked paprika"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Vegan+Buddha+Bowl"
+    },
+    {
+      "id": 29,
+      "name": "Greek Salad",
+      "description": "Crisp cucumbers, ripe tomatoes, Kalamata olives, red onion, and creamy feta tossed in lemon-oregano vinaigrette.",
+      "country": "Greece",
+      "course": "Starter",
+      "price": 10.49,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Dairy"
+      ],
+      "ingredients": [
+        "cucumber",
+        "tomatoes",
+        "Kalamata olives",
+        "red onion",
+        "feta cheese",
+        "green bell pepper",
+        "oregano",
+        "olive oil",
+        "lemon juice",
+        "salt",
+        "black pepper"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Greek+Salad"
+    },
+    {
+      "id": 30,
+      "name": "Korean Pancakes",
+      "description": "Crispy scallion and vegetable pancakes served with a soy-sesame dipping sauce.",
+      "country": "Korea",
+      "course": "Starter",
+      "price": 9.49,
+      "spiceLevel": "Mild",
+      "dietType": [
+        "Vegan",
+        "Vegetarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Soy",
+        "Sesame"
+      ],
+      "ingredients": [
+        "flour",
+        "scallions",
+        "zucchini",
+        "red chili",
+        "soy sauce",
+        "sesame oil",
+        "rice vinegar",
+        "garlic",
+        "water",
+        "salt",
+        "vegetable oil"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Korean+Pancakes"
+    },
+    {
+      "id": 31,
+      "name": "Eggs Benedict",
+      "description": "Toasted English muffins topped with Canadian bacon, poached eggs, and rich hollandaise sauce.",
+      "country": "USA",
+      "course": "Breakfast",
+      "price": 13.49,
+      "spiceLevel": "None",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Dairy",
+        "Eggs"
+      ],
+      "ingredients": [
+        "English muffin",
+        "Canadian bacon",
+        "eggs",
+        "butter",
+        "lemon juice",
+        "cayenne pepper",
+        "white vinegar",
+        "salt",
+        "chives"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Eggs+Benedict"
+    },
+    {
+      "id": 32,
+      "name": "P\u00e3o de Queijo",
+      "description": "Brazilian cheese bread balls made with tapioca flour and Minas cheese, golden and chewy inside.",
+      "country": "Brazil",
+      "course": "Starter",
+      "price": 7.49,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Dairy",
+        "Eggs"
+      ],
+      "ingredients": [
+        "tapioca flour",
+        "Minas cheese",
+        "Parmesan cheese",
+        "eggs",
+        "milk",
+        "vegetable oil",
+        "salt",
+        "garlic",
+        "butter"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Pao+de+Queijo"
+    },
+    {
+      "id": 33,
+      "name": "B\u00fan Ch\u1ea3",
+      "description": "Hanoi-style grilled pork patties and sliced pork belly served over rice vermicelli with fresh herbs and dipping sauce.",
+      "country": "Vietnam",
+      "course": "Main",
+      "price": 15.49,
+      "spiceLevel": "Mild",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Fish",
+        "Soy"
+      ],
+      "ingredients": [
+        "ground pork",
+        "pork belly",
+        "rice vermicelli",
+        "fish sauce",
+        "sugar",
+        "garlic",
+        "shallots",
+        "lettuce",
+        "mint",
+        "cilantro",
+        "pickled carrots",
+        "pickled daikon",
+        "lime"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Bun+Cha"
+    },
+    {
+      "id": 34,
+      "name": "Vegan Injera Platter",
+      "description": "Ethiopian sourdough flatbread served with misir wot (red lentils), gomen (collard greens), and shiro (chickpea stew).",
+      "country": "Ethiopia",
+      "course": "Main",
+      "price": 14.49,
+      "spiceLevel": "Medium",
+      "dietType": [
+        "Vegan",
+        "Vegetarian"
+      ],
+      "isGlutenFree": true,
+      "allergens": [],
+      "ingredients": [
+        "teff flour",
+        "red lentils",
+        "collard greens",
+        "chickpea flour",
+        "onion",
+        "garlic",
+        "ginger",
+        "berbere spice",
+        "turmeric",
+        "tomato",
+        "olive oil",
+        "salt"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Vegan+Injera+Platter"
+    },
+    {
+      "id": 35,
+      "name": "Peruvian Lomo Saltado",
+      "description": "Stir-fried beef tenderloin with tomatoes, onions, and aji amarillo peppers, served with fries and white rice.",
+      "country": "Peru",
+      "course": "Main",
+      "price": 18.99,
+      "spiceLevel": "Medium",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Soy"
+      ],
+      "ingredients": [
+        "beef tenderloin",
+        "red onion",
+        "tomatoes",
+        "aji amarillo",
+        "soy sauce",
+        "red wine vinegar",
+        "garlic",
+        "cumin",
+        "French fries",
+        "white rice",
+        "cilantro",
+        "vegetable oil"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Lomo+Saltado"
+    },
+    {
+      "id": 36,
+      "name": "Masala Dosa",
+      "description": "Crispy South Indian crepe made from fermented rice and lentil batter, filled with spiced potato filling.",
+      "country": "India",
+      "course": "Breakfast",
+      "price": 10.99,
+      "spiceLevel": "Medium",
+      "dietType": [
+        "Vegan",
+        "Vegetarian"
+      ],
+      "isGlutenFree": true,
+      "allergens": [],
+      "ingredients": [
+        "rice flour",
+        "urad dal",
+        "potatoes",
+        "onion",
+        "mustard seeds",
+        "curry leaves",
+        "turmeric",
+        "green chilies",
+        "ginger",
+        "coconut chutney",
+        "sambar",
+        "oil"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Masala+Dosa"
+    },
+    {
+      "id": 37,
+      "name": "Seafood Paella",
+      "description": "Saffron-infused Spanish rice with shrimp, mussels, clams, and calamari, finished with lemon and parsley.",
+      "country": "Spain",
+      "course": "Main",
+      "price": 21.99,
+      "spiceLevel": "Mild",
+      "dietType": [
+        "Pescatarian"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Shellfish",
+        "Fish"
+      ],
+      "ingredients": [
+        "bomba rice",
+        "shrimp",
+        "mussels",
+        "clams",
+        "calamari",
+        "saffron",
+        "garlic",
+        "onion",
+        "tomato",
+        "peas",
+        "lemon",
+        "parsley",
+        "olive oil",
+        "fish stock"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Seafood+Paella"
+    },
+    {
+      "id": 38,
+      "name": "Tres Leches Cake",
+      "description": "Moist sponge cake soaked in three milks \u2014 condensed, evaporated, and heavy cream \u2014 topped with whipped cream and cinnamon.",
+      "country": "Mexico",
+      "course": "Dessert",
+      "price": 8.49,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": false,
+      "allergens": [
+        "Gluten",
+        "Dairy",
+        "Eggs"
+      ],
+      "ingredients": [
+        "flour",
+        "eggs",
+        "sugar",
+        "condensed milk",
+        "evaporated milk",
+        "heavy cream",
+        "vanilla extract",
+        "baking powder",
+        "cinnamon",
+        "butter"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Tres+Leches+Cake"
+    },
+    {
+      "id": 39,
+      "name": "Matcha Panna Cotta",
+      "description": "Silky Japanese green tea custard served with a black sesame tuile and red bean compote.",
+      "country": "Japan",
+      "course": "Dessert",
+      "price": 9.49,
+      "spiceLevel": "None",
+      "dietType": [
+        "Vegetarian"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Dairy",
+        "Sesame"
+      ],
+      "ingredients": [
+        "heavy cream",
+        "milk",
+        "matcha powder",
+        "sugar",
+        "gelatin",
+        "vanilla bean",
+        "red beans",
+        "black sesame seeds",
+        "butter",
+        "powdered sugar"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Matcha+Panna+Cotta"
+    },
+    {
+      "id": 40,
+      "name": "Nigerian Suya Skewers",
+      "description": "Spicy grilled beef skewers coated in yaji (suya spice), served with sliced onions, tomatoes, and extra pepper.",
+      "country": "Nigeria",
+      "course": "Starter",
+      "price": 11.99,
+      "spiceLevel": "Extra Hot",
+      "dietType": [
+        "Omnivore"
+      ],
+      "isGlutenFree": true,
+      "allergens": [
+        "Peanuts"
+      ],
+      "ingredients": [
+        "beef sirloin",
+        "suya spice",
+        "ground peanuts",
+        "cayenne pepper",
+        "paprika",
+        "onion powder",
+        "garlic powder",
+        "ginger",
+        "salt",
+        "vegetable oil",
+        "onion",
+        "tomato"
+      ],
+      "imageUrl": "https://placehold.co/400x300?text=Suya+Skewers"
+    }
+  ],
+  "filters": {
+    "spiceLevels": [
+      "None",
+      "Mild",
+      "Medium",
+      "Hot",
+      "Extra Hot"
+    ],
+    "dietTypes": [
+      "Vegan",
+      "Vegetarian",
+      "Pescatarian",
+      "Omnivore"
+    ],
+    "countries": [
+      "Argentina",
+      "Australia",
+      "Brazil",
+      "China",
+      "Ethiopia",
+      "France",
+      "Germany",
+      "Greece",
+      "India",
+      "Italy",
+      "Jamaica",
+      "Japan",
+      "Korea",
+      "Lebanon",
+      "Mexico",
+      "Morocco",
+      "Nigeria",
+      "Peru",
+      "Spain",
+      "Thailand",
+      "Turkey",
+      "USA",
+      "Vietnam"
+    ],
+    "courses": [
+      "Breakfast",
+      "Starter",
+      "Main",
+      "Dessert"
+    ],
+    "allergens": [
+      "Dairy",
+      "Eggs",
+      "Fish",
+      "Gluten",
+      "Peanuts",
+      "Sesame",
+      "Shellfish",
+      "Soy",
+      "Tree Nuts"
+    ]
+  }
+}
