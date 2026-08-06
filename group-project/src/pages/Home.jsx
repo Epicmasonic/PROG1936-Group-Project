@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import data from '../data/db.json'
 import './Home.css'
 
 // Floating food emojis in the hero background
@@ -31,29 +30,6 @@ const STATS = [
   { value: 5,    suffix: '',  label: 'Diet Types'  },
   { value: 100,  suffix: '%', label: 'Flavour'    },
 ]
-
-const STAT_ROUNDING = 10
-function roundDownTo(number, roundTarget) {
-  return Math.floor(number / roundTarget) * roundTarget
-}
-
-STATS[0].value = roundDownTo(data.dishes.length, STAT_ROUNDING)
-
-const countries = new Set()
-const dietTypes = new Set()
-
-for (const dish of data.dishes) {
-  if (dish.country) {
-    countries.add(dish.country)
-  }
-
-  for (const type of dish.dietType || []) {
-    dietTypes.add(type)
-  }
-}
-
-STATS[1].value = countries.size
-STATS[2].value = dietTypes.size
 
 // Animated counter hook
 const useCounter = (target, duration = 1500) => {
@@ -164,7 +140,11 @@ const Home = () => {
               🇮🇳 Indian &nbsp;·&nbsp; 🇯🇵 Japanese &nbsp;·&nbsp; 🇮🇹 Italian &nbsp;·&nbsp;
               🇹🇭 Thai &nbsp;·&nbsp; 🇱🇧 Lebanese &nbsp;·&nbsp; 🇲🇽 Mexican &nbsp;·&nbsp;
               🇫🇷 French &nbsp;·&nbsp; 🇪🇸 Spanish &nbsp;·&nbsp; 🇯🇲 Jamaican &nbsp;·&nbsp;
-              🇦🇺 Australian &nbsp;·&nbsp;
+              🇦🇺 Australian &nbsp;·&nbsp; 🇬🇷 Greek &nbsp;·&nbsp; 🇲🇦 Moroccan &nbsp;·&nbsp;
+              🇰🇷 Korean &nbsp;·&nbsp; 🇻🇳 Vietnamese &nbsp;·&nbsp; 🇵🇪 Peruvian &nbsp;·&nbsp;
+              🇳🇬 Nigerian &nbsp;·&nbsp; 🇹🇷 Turkish &nbsp;·&nbsp; 🇧🇷 Brazilian &nbsp;·&nbsp;
+              🇩🇪 German &nbsp;·&nbsp; 🇨🇳 Chinese &nbsp;·&nbsp; 🇪🇹 Ethiopian &nbsp;·&nbsp;
+              🇦🇷 Argentine &nbsp;·&nbsp; 🇺🇸 American &nbsp;·&nbsp;
             </span>
           ))}
         </div>
@@ -177,7 +157,7 @@ const Home = () => {
 
         <div className={`features-grid ${scrolled ? 'features-visible' : ''}`}>
           {[
-            { icon: '🌍', title: 'Global Cuisines',   desc: 'Dishes from ' + roundDownTo(STATS[1].value, STAT_ROUNDING) + '+ countries — India, Japan, Italy, Thailand, Jamaica and more.' },
+            { icon: '🌍', title: 'Global Cuisines',   desc: 'Dishes from 10+ countries — India, Japan, Italy, Thailand, Jamaica and more.' },
             { icon: '🔍', title: 'Smart Filtering',   desc: 'Filter by spice, allergens, diet type, ingredients, country, and price.' },
             { icon: '🥗', title: 'Diet Friendly',     desc: 'Vegan, Vegetarian, Pescatarian, and Gluten-Free options clearly labelled.' },
             { icon: '💰', title: 'Great Value',       desc: 'Fair prices across every course — from starters all the way to desserts.' },
