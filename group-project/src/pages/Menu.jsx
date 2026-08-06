@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { db } from '../firebase.jsx'
 import { collection, getDocs } from 'firebase/firestore'
+import { useCart } from '../context/useCart'
 import filtersData from '../data/db.json'
 import './Menu.css'
 
@@ -47,7 +49,7 @@ const CartItemRow = ({ item, onAddItem, onRemoveItem }) => (
   </div>
 )
 
-const CartPanel = ({ items, cartOpen, onClose, onAddItem, onRemoveItem }) => {
+const CartPanel = ({ items, cartOpen, onClose, onAddItem, onRemoveItem, onCheckout }) => {
   const subtotal = items.reduce((sum, item) => sum + item.qty * item.price, 0)
   const tax = subtotal * 0.13
   const total = subtotal + tax
@@ -91,7 +93,14 @@ const CartPanel = ({ items, cartOpen, onClose, onAddItem, onRemoveItem }) => {
         </div>
       </div>
 
-      <button className="checkout-btn" type="button">Proceed to Checkout</button>
+      <button
+        className="checkout-btn"
+        type="button"
+        disabled={items.length === 0}
+        onClick={onCheckout}
+      >
+        Proceed to Checkout
+      </button>
     </aside>
   )
 }
@@ -122,7 +131,7 @@ const DishCard = ({ dish, onAddToCart }) => {
 
         {/* Diet type badges */}
         <div className="badge-row">
-          {dish.dietType.map(dt => (
+          {(dish.dietType || []).map(dt => (
             <span
               key={dt}
               className="badge"
@@ -142,7 +151,7 @@ const DishCard = ({ dish, onAddToCart }) => {
         </div>
 
         {/* Allergens */}
-        {dish.allergens.length > 0 && (
+        {(dish.allergens || []).length > 0 && (
           <div className="allergen-row">
             <span className="allergen-label">⚠️ Contains:</span>
             {dish.allergens.map(a => (
@@ -153,9 +162,9 @@ const DishCard = ({ dish, onAddToCart }) => {
 
         {/* Ingredients preview */}
         <details className="ingredients-details">
-          <summary>Ingredients ({dish.ingredients.length})</summary>
+          <summary>Ingredients ({(dish.ingredients || []).length})</summary>
           <p className="ingredients-list">
-            {dish.ingredients.join(', ')}
+            {(dish.ingredients || []).join(', ')}
           </p>
         </details>
 
@@ -175,6 +184,8 @@ const FilterSection = ({ title, children }) => (
 
 // ── Menu Page ──────────────────────────────────────────────────────────
 const Menu = () => {
+  const navigate = useNavigate()
+  const { cart, addToCart, addCartQty, removeFromCart, editingOrder, clearCart } = useCart()
   const [dishes, setDishes] = useState([])
   const { filters } = filtersData
 
@@ -201,7 +212,6 @@ const Menu = () => {
   const [maxPrice,        setMaxPrice]        = useState(MAX_PRICE)
   const [sortBy,          setSortBy]          = useState('default')
   const [sidebarOpen,     setSidebarOpen]     = useState(false)
-  const [cart,            setCart]            = useState([])
   const [cartOpen,        setCartOpen]        = useState(false)
 
   // ── Toggle helpers ──
@@ -235,7 +245,7 @@ const Menu = () => {
       if (search) {
         const q = search.toLowerCase()
         const matchName = dish.name.toLowerCase().includes(q)
-        const matchIngredient = dish.ingredients.some(i => i.toLowerCase().includes(q))
+        const matchIngredient = (dish.ingredients || []).some(i => i.toLowerCase().includes(q))
         if (!matchName && !matchIngredient) return false
       }
       // 2. Course tab
@@ -245,12 +255,12 @@ const Menu = () => {
       // 4. Country
       if (country && dish.country !== country) return false
       // 5. Diet type (dish must match at least one selected)
-      if (dietTypes.length > 0 && !dietTypes.some(dt => dish.dietType.includes(dt))) return false
+      if (dietTypes.length > 0 && !dietTypes.some(dt => (dish.dietType || []).includes(dt))) return false
       // 6. Gluten free toggle
       if (glutenFree && !dish.isGlutenFree) return false
       // 7. Exclude allergens (dish must NOT contain any excluded allergen)
       if (excludeAllergens.length > 0 &&
-          excludeAllergens.some(a => dish.allergens.includes(a))) return false
+          excludeAllergens.some(a => (dish.allergens || []).includes(a))) return false
       // 8. Max price
       if (dish.price > maxPrice) return false
 
@@ -265,37 +275,16 @@ const Menu = () => {
     return result
   }, [dishes, search, activeCourse, spiceLevel, country, dietTypes, glutenFree, excludeAllergens, maxPrice, sortBy])
 
-  const addToCart = (dish) => {
-    setCart(prev => {
-      const existingItem = prev.find(item => item.id === dish.id)
-
-      if (existingItem) {
-        return prev.map(item =>
-          item.id === dish.id ? { ...item, qty: item.qty + 1 } : item
-        )
-      }
-
-      return [...prev, { ...dish, qty: 1 }]
-    })
-  }
-
-  const addCartQty = (id) => {
-    setCart(prev => prev.map(item =>
-      item.id === id ? { ...item, qty: item.qty + 1 } : item
-    ))
-  }
-
-  const removeFromCart = (id) => {
-    setCart(prev => prev.flatMap(item => {
-      if (item.id !== id) return [item]
-      if (item.qty > 1) return [{ ...item, qty: item.qty - 1 }]
-      return []
-    }))
-  }
-
   // ── Render ──
   return (
     <div className="menu-page">
+
+      {editingOrder && (
+        <div className="editing-order-banner">
+          <span>Editing order <strong>{editingOrder.id}</strong> — add more dishes or adjust the cart, then head to checkout.</span>
+          <button type="button" onClick={clearCart}>Cancel edit</button>
+        </div>
+      )}
 
       {/* ── Page Header ── */}
       <div className="menu-header">
@@ -492,6 +481,10 @@ const Menu = () => {
           onClose={() => setCartOpen(false)}
           onAddItem={addCartQty}
           onRemoveItem={removeFromCart}
+          onCheckout={() => {
+            setCartOpen(false)
+            navigate('/checkout')
+          }}
         />
 
       </div>
