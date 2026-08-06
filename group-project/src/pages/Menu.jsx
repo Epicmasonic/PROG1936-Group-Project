@@ -1,5 +1,7 @@
-import { useState, useMemo } from 'react'
-import data from '../data/db.json'
+import { useState, useEffect, useMemo } from 'react'
+import { db } from '../firebase.jsx'
+import { collection, getDocs } from 'firebase/firestore'
+import filtersData from '../data/db.json'
 import './Menu.css'
 
 // ── Helpers ────────────────────────────────────────────────────────────
@@ -173,7 +175,20 @@ const FilterSection = ({ title, children }) => (
 
 // ── Menu Page ──────────────────────────────────────────────────────────
 const Menu = () => {
-  const { dishes, filters } = data
+  const [dishes, setDishes] = useState([])
+  const { filters } = filtersData
+
+  useEffect(() => {
+    async function loadDishes() {
+      const snapshot = await getDocs(collection(db, 'menuItems'))
+      const items = snapshot.docs.map((docSnap) => ({
+        id: docSnap.id,
+        ...docSnap.data(),
+      }))
+      setDishes(items)
+    }
+    loadDishes()
+  }, [])
 
   // ── Filter State (useState per requirement) ──
   const [search,          setSearch]          = useState('')
