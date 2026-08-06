@@ -4,9 +4,15 @@ import './Menu.css'
 
 // ── Helpers ────────────────────────────────────────────────────────────
 const FLAGS = {
+  // original 10
   India: '🇮🇳', Japan: '🇯🇵', Italy: '🇮🇹', Thailand: '🇹🇭',
   Lebanon: '🇱🇧', Mexico: '🇲🇽', France: '🇫🇷', Spain: '🇪🇸',
   Jamaica: '🇯🇲', Australia: '🇦🇺',
+  // new 13
+  Argentina: '🇦🇷', Brazil: '🇧🇷', China: '🇨🇳', Ethiopia: '🇪🇹',
+  Germany: '🇩🇪', Greece: '🇬🇷', Korea: '🇰🇷', Morocco: '🇲🇦',
+  Nigeria: '🇳🇬', Peru: '🇵🇪', Turkey: '🇹🇷', USA: '🇺🇸',
+  Vietnam: '🇻🇳',
 }
 
 const SPICE = {
@@ -28,74 +34,8 @@ const COURSE_ICONS = { All: '🍽️', Breakfast: '🍳', Starter: '🥣', Main:
 
 const MAX_PRICE = 20
 
-const CartItemRow = ({ item, onAddItem, onRemoveItem }) => (
-  <div className="cart-item-row">
-    <div className="cart-item-meta">
-      <span className="cart-item-name">{item.name}</span>
-      <span className="cart-item-qty">Qty {item.qty}</span>
-    </div>
-    <div className="cart-item-actions">
-      <div className="cart-stepper">
-        <button className="cart-stepper-btn" type="button" onClick={() => onRemoveItem(item.id)}>-</button>
-        <span className="cart-stepper-value">{item.qty}</span>
-        <button className="cart-stepper-btn" type="button" onClick={() => onAddItem(item.id)}>+</button>
-      </div>
-      <span className="cart-item-price">${(item.qty * item.price).toFixed(2)}</span>
-    </div>
-  </div>
-)
-
-const CartPanel = ({ items, cartOpen, onClose, onAddItem, onRemoveItem }) => {
-  const subtotal = items.reduce((sum, item) => sum + item.qty * item.price, 0)
-  const tax = subtotal * 0.13
-  const total = subtotal + tax
-
-  return (
-    <aside className={`cart-panel ${cartOpen ? 'cart-open' : ''}`}>
-      <div className="cart-panel-header">
-        <div>
-          <p className="cart-eyebrow">Your Order</p>
-          <h2 className="cart-title">Cart</h2>
-        </div>
-        <div className="cart-header-actions">
-          <span className="cart-count">{items.length} items</span>
-          <button className="cart-close-btn" type="button" onClick={onClose}>✕</button>
-        </div>
-      </div>
-
-      <div className="cart-items-list">
-        {items.map(item => (
-          <CartItemRow
-            key={item.id}
-            item={item}
-            onAddItem={onAddItem}
-            onRemoveItem={onRemoveItem}
-          />
-        ))}
-      </div>
-
-      <div className="cart-summary-box">
-        <div className="summary-row">
-          <span>Subtotal</span>
-          <strong>${subtotal.toFixed(2)}</strong>
-        </div>
-        <div className="summary-row">
-          <span>Estimated tax</span>
-          <strong>${tax.toFixed(2)}</strong>
-        </div>
-        <div className="summary-row total-row">
-          <span>Total</span>
-          <strong>${total.toFixed(2)}</strong>
-        </div>
-      </div>
-
-      <button className="checkout-btn" type="button">Proceed to Checkout</button>
-    </aside>
-  )
-}
-
 // ── DishCard ───────────────────────────────────────────────────────────
-const DishCard = ({ dish, onAddToCart }) => {
+const DishCard = ({ dish }) => {
   const spice = SPICE[dish.spiceLevel] || SPICE['None']
 
   return (
@@ -156,8 +96,6 @@ const DishCard = ({ dish, onAddToCart }) => {
             {dish.ingredients.join(', ')}
           </p>
         </details>
-
-        <button className="add-cart-btn" type="button" onClick={() => onAddToCart(dish)}>Add to cart</button>
       </div>
     </div>
   )
@@ -186,8 +124,6 @@ const Menu = () => {
   const [maxPrice,        setMaxPrice]        = useState(MAX_PRICE)
   const [sortBy,          setSortBy]          = useState('default')
   const [sidebarOpen,     setSidebarOpen]     = useState(false)
-  const [cart,            setCart]            = useState([])
-  const [cartOpen,        setCartOpen]        = useState(false)
 
   // ── Toggle helpers ──
   const toggleDietType = (dt) =>
@@ -250,34 +186,6 @@ const Menu = () => {
     return result
   }, [dishes, search, activeCourse, spiceLevel, country, dietTypes, glutenFree, excludeAllergens, maxPrice, sortBy])
 
-  const addToCart = (dish) => {
-    setCart(prev => {
-      const existingItem = prev.find(item => item.id === dish.id)
-
-      if (existingItem) {
-        return prev.map(item =>
-          item.id === dish.id ? { ...item, qty: item.qty + 1 } : item
-        )
-      }
-
-      return [...prev, { ...dish, qty: 1 }]
-    })
-  }
-
-  const addCartQty = (id) => {
-    setCart(prev => prev.map(item =>
-      item.id === id ? { ...item, qty: item.qty + 1 } : item
-    ))
-  }
-
-  const removeFromCart = (id) => {
-    setCart(prev => prev.flatMap(item => {
-      if (item.id !== id) return [item]
-      if (item.qty > 1) return [{ ...item, qty: item.qty - 1 }]
-      return []
-    }))
-  }
-
   // ── Render ──
   return (
     <div className="menu-page">
@@ -307,10 +215,6 @@ const Menu = () => {
 
           <button className="filter-toggle-btn" onClick={() => setSidebarOpen(o => !o)}>
             {sidebarOpen ? '✕ Close' : '⚙️ Filters'}
-          </button>
-
-          <button className="cart-toggle-btn" onClick={() => setCartOpen(o => !o)}>
-            🛒 Cart
           </button>
         </div>
       </div>
@@ -465,19 +369,11 @@ const Menu = () => {
           ) : (
             <div className="dish-grid">
               {filtered.map(dish => (
-                <DishCard key={dish.id} dish={dish} onAddToCart={addToCart} />
+                <DishCard key={dish.id} dish={dish} />
               ))}
             </div>
           )}
         </div>
-
-        <CartPanel
-          items={cart}
-          cartOpen={cartOpen}
-          onClose={() => setCartOpen(false)}
-          onAddItem={addCartQty}
-          onRemoveItem={removeFromCart}
-        />
 
       </div>
     </div>
