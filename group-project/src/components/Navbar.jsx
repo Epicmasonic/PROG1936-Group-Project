@@ -33,6 +33,16 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
+            to="/about"
+            end
+            className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+            onClick={() => setMenuOpen(false)}
+          >
+            About
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/menu"
             className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
             onClick={() => setMenuOpen(false)}
