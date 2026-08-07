@@ -1,5 +1,9 @@
-import { useState, useMemo } from 'react'
-import data from '../data/db.json'
+import { useState, useEffect, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { db } from '../firebase.jsx'
+import { collection, getDocs } from 'firebase/firestore'
+import { useCart } from '../context/useCart'
+import filtersData from '../data/db.json'
 import './Menu.css'
 
 // ── Helpers ────────────────────────────────────────────────────────────
@@ -34,8 +38,81 @@ const COURSE_ICONS = { All: '🍽️', Breakfast: '🍳', Starter: '🥣', Main:
 
 const MAX_PRICE = 20
 
+const CartItemRow = ({ item, onAddItem, onRemoveItem }) => (
+  <div className="cart-item-row">
+    <div className="cart-item-meta">
+      <span className="cart-item-name">{item.name}</span>
+      <span className="cart-item-qty">Qty {item.qty}</span>
+    </div>
+    <div className="cart-item-actions">
+      <div className="cart-stepper">
+        <button className="cart-stepper-btn" type="button" onClick={() => onRemoveItem(item.id)}>-</button>
+        <span className="cart-stepper-value">{item.qty}</span>
+        <button className="cart-stepper-btn" type="button" onClick={() => onAddItem(item.id)}>+</button>
+      </div>
+      <span className="cart-item-price">${(item.qty * item.price).toFixed(2)}</span>
+    </div>
+  </div>
+)
+
+const CartPanel = ({ items, cartOpen, onClose, onAddItem, onRemoveItem, onCheckout }) => {
+  const subtotal = items.reduce((sum, item) => sum + item.qty * item.price, 0)
+  const tax = subtotal * 0.13
+  const total = subtotal + tax
+
+  return (
+    <aside className={`cart-panel ${cartOpen ? 'cart-open' : ''}`}>
+      <div className="cart-panel-header">
+        <div>
+          <p className="cart-eyebrow">Your Order</p>
+          <h2 className="cart-title">Cart</h2>
+        </div>
+        <div className="cart-header-actions">
+          <span className="cart-count">{items.length} items</span>
+          <button className="cart-close-btn" type="button" onClick={onClose}>✕</button>
+        </div>
+      </div>
+
+      <div className="cart-items-list">
+        {items.map(item => (
+          <CartItemRow
+            key={item.id}
+            item={item}
+            onAddItem={onAddItem}
+            onRemoveItem={onRemoveItem}
+          />
+        ))}
+      </div>
+
+      <div className="cart-summary-box">
+        <div className="summary-row">
+          <span>Subtotal</span>
+          <strong>${subtotal.toFixed(2)}</strong>
+        </div>
+        <div className="summary-row">
+          <span>Estimated tax</span>
+          <strong>${tax.toFixed(2)}</strong>
+        </div>
+        <div className="summary-row total-row">
+          <span>Total</span>
+          <strong>${total.toFixed(2)}</strong>
+        </div>
+      </div>
+
+      <button
+        className="checkout-btn"
+        type="button"
+        disabled={items.length === 0}
+        onClick={onCheckout}
+      >
+        Proceed to Checkout
+      </button>
+    </aside>
+  )
+}
+
 // ── DishCard ───────────────────────────────────────────────────────────
-const DishCard = ({ dish }) => {
+const DishCard = ({ dish, onAddToCart }) => {
   const spice = SPICE[dish.spiceLevel] || SPICE['None']
 
   return (
@@ -60,7 +137,7 @@ const DishCard = ({ dish }) => {
 
         {/* Diet type badges */}
         <div className="badge-row">
-          {dish.dietType.map(dt => (
+          {(dish.dietType || []).map(dt => (
             <span
               key={dt}
               className="badge"
@@ -80,7 +157,7 @@ const DishCard = ({ dish }) => {
         </div>
 
         {/* Allergens */}
-        {dish.allergens.length > 0 && (
+        {(dish.allergens || []).length > 0 && (
           <div className="allergen-row">
             <span className="allergen-label">⚠️ Contains:</span>
             {dish.allergens.map(a => (
@@ -91,11 +168,13 @@ const DishCard = ({ dish }) => {
 
         {/* Ingredients preview */}
         <details className="ingredients-details">
-          <summary>Ingredients ({dish.ingredients.length})</summary>
+          <summary>Ingredients ({(dish.ingredients || []).length})</summary>
           <p className="ingredients-list">
-            {dish.ingredients.join(', ')}
+            {(dish.ingredients || []).join(', ')}
           </p>
         </details>
+
+        <button className="add-cart-btn" type="button" onClick={() => onAddToCart(dish)}>Add to cart</button>
       </div>
     </div>
   )
@@ -111,7 +190,22 @@ const FilterSection = ({ title, children }) => (
 
 // ── Menu Page ──────────────────────────────────────────────────────────
 const Menu = () => {
-  const { dishes, filters } = data
+  const navigate = useNavigate()
+  const { cart, addToCart, addCartQty, removeFromCart, editingOrder, clearCart } = useCart()
+  const [dishes, setDishes] = useState([])
+  const { filters } = filtersData
+
+  useEffect(() => {
+    async function loadDishes() {
+      const snapshot = await getDocs(collection(db, 'menuItems'))
+      const items = snapshot.docs.map((docSnap) => ({
+        id: docSnap.id,
+        ...docSnap.data(),
+      }))
+      setDishes(items)
+    }
+    loadDishes()
+  }, [])
 
   // ── Filter State (useState per requirement) ──
   const [search,          setSearch]          = useState('')
@@ -124,6 +218,7 @@ const Menu = () => {
   const [maxPrice,        setMaxPrice]        = useState(MAX_PRICE)
   const [sortBy,          setSortBy]          = useState('default')
   const [sidebarOpen,     setSidebarOpen]     = useState(false)
+  const [cartOpen,        setCartOpen]        = useState(false)
 
   // ── Toggle helpers ──
   const toggleDietType = (dt) =>
@@ -156,7 +251,7 @@ const Menu = () => {
       if (search) {
         const q = search.toLowerCase()
         const matchName = dish.name.toLowerCase().includes(q)
-        const matchIngredient = dish.ingredients.some(i => i.toLowerCase().includes(q))
+        const matchIngredient = (dish.ingredients || []).some(i => i.toLowerCase().includes(q))
         if (!matchName && !matchIngredient) return false
       }
       // 2. Course tab
@@ -166,12 +261,12 @@ const Menu = () => {
       // 4. Country
       if (country && dish.country !== country) return false
       // 5. Diet type (dish must match at least one selected)
-      if (dietTypes.length > 0 && !dietTypes.some(dt => dish.dietType.includes(dt))) return false
+      if (dietTypes.length > 0 && !dietTypes.some(dt => (dish.dietType || []).includes(dt))) return false
       // 6. Gluten free toggle
       if (glutenFree && !dish.isGlutenFree) return false
       // 7. Exclude allergens (dish must NOT contain any excluded allergen)
       if (excludeAllergens.length > 0 &&
-          excludeAllergens.some(a => dish.allergens.includes(a))) return false
+          excludeAllergens.some(a => (dish.allergens || []).includes(a))) return false
       // 8. Max price
       if (dish.price > maxPrice) return false
 
@@ -189,6 +284,13 @@ const Menu = () => {
   // ── Render ──
   return (
     <div className="menu-page">
+
+      {editingOrder && (
+        <div className="editing-order-banner">
+          <span>Editing order <strong>{editingOrder.id}</strong> — add more dishes or adjust the cart, then head to checkout.</span>
+          <button type="button" onClick={clearCart}>Cancel edit</button>
+        </div>
+      )}
 
       {/* ── Page Header ── */}
       <div className="menu-header">
@@ -215,6 +317,10 @@ const Menu = () => {
 
           <button className="filter-toggle-btn" onClick={() => setSidebarOpen(o => !o)}>
             {sidebarOpen ? '✕ Close' : '⚙️ Filters'}
+          </button>
+
+          <button className="cart-toggle-btn" onClick={() => setCartOpen(o => !o)}>
+            🛒 Cart
           </button>
         </div>
       </div>
@@ -369,11 +475,23 @@ const Menu = () => {
           ) : (
             <div className="dish-grid">
               {filtered.map(dish => (
-                <DishCard key={dish.id} dish={dish} />
+                <DishCard key={dish.id} dish={dish} onAddToCart={addToCart} />
               ))}
             </div>
           )}
         </div>
+
+        <CartPanel
+          items={cart}
+          cartOpen={cartOpen}
+          onClose={() => setCartOpen(false)}
+          onAddItem={addCartQty}
+          onRemoveItem={removeFromCart}
+          onCheckout={() => {
+            setCartOpen(false)
+            navigate('/checkout')
+          }}
+        />
 
       </div>
     </div>

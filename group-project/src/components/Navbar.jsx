@@ -50,6 +50,15 @@ const Navbar = () => {
             Menu
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/orders"
+            className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+            onClick={() => setMenuOpen(false)}
+          >
+            Orders
+          </NavLink>
+        </li>
       </ul>
     </nav>
   )

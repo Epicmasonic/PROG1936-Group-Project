@@ -9,6 +9,35 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* ── Editing-order banner ── */
+.editing-order-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fef3c7;
+  border-bottom: 1px solid #fde68a;
+  padding: 12px 32px;
+  font-size: 0.88rem;
+  color: #92400e;
+}
+
+.editing-order-banner strong {
+  word-break: break-all;
+}
+
+.editing-order-banner button {
+  border: none;
+  background: #92400e;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
 /* ── Page header ── */
 .menu-header {
   display: flex;
@@ -448,6 +477,12 @@
   padding: 13px 16px;
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(233, 69, 96, 0.22);
+}
+
+.checkout-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .dish-grid {
