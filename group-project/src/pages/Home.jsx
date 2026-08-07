@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import data from '../data/db.json'
 import './Home.css'
+import data from '../data/db.json'
 
 // Floating food emojis in the hero background
 const FLOATERS = [
@@ -164,7 +164,11 @@ const Home = () => {
               🇮🇳 Indian &nbsp;·&nbsp; 🇯🇵 Japanese &nbsp;·&nbsp; 🇮🇹 Italian &nbsp;·&nbsp;
               🇹🇭 Thai &nbsp;·&nbsp; 🇱🇧 Lebanese &nbsp;·&nbsp; 🇲🇽 Mexican &nbsp;·&nbsp;
               🇫🇷 French &nbsp;·&nbsp; 🇪🇸 Spanish &nbsp;·&nbsp; 🇯🇲 Jamaican &nbsp;·&nbsp;
-              🇦🇺 Australian &nbsp;·&nbsp;
+              🇦🇺 Australian &nbsp;·&nbsp; 🇬🇷 Greek &nbsp;·&nbsp; 🇲🇦 Moroccan &nbsp;·&nbsp;
+              🇰🇷 Korean &nbsp;·&nbsp; 🇻🇳 Vietnamese &nbsp;·&nbsp; 🇵🇪 Peruvian &nbsp;·&nbsp;
+              🇳🇬 Nigerian &nbsp;·&nbsp; 🇹🇷 Turkish &nbsp;·&nbsp; 🇧🇷 Brazilian &nbsp;·&nbsp;
+              🇩🇪 German &nbsp;·&nbsp; 🇨🇳 Chinese &nbsp;·&nbsp; 🇪🇹 Ethiopian &nbsp;·&nbsp;
+              🇦🇷 Argentine &nbsp;·&nbsp; 🇺🇸 American &nbsp;·&nbsp;
             </span>
           ))}
         </div>

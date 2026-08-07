@@ -8,9 +8,15 @@ import './Menu.css'
 
 // ── Helpers ────────────────────────────────────────────────────────────
 const FLAGS = {
+  // original 10
   India: '🇮🇳', Japan: '🇯🇵', Italy: '🇮🇹', Thailand: '🇹🇭',
   Lebanon: '🇱🇧', Mexico: '🇲🇽', France: '🇫🇷', Spain: '🇪🇸',
   Jamaica: '🇯🇲', Australia: '🇦🇺',
+  // new 13
+  Argentina: '🇦🇷', Brazil: '🇧🇷', China: '🇨🇳', Ethiopia: '🇪🇹',
+  Germany: '🇩🇪', Greece: '🇬🇷', Korea: '🇰🇷', Morocco: '🇲🇦',
+  Nigeria: '🇳🇬', Peru: '🇵🇪', Turkey: '🇹🇷', USA: '🇺🇸',
+  Vietnam: '🇻🇳',
 }
 
 const SPICE = {
