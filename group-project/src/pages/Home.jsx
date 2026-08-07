@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './Home.css'
+import data from '../data/db.json'
 
 // Floating food emojis in the hero background
 const FLOATERS = [
@@ -180,7 +181,7 @@ const Home = () => {
 
         <div className={`features-grid ${scrolled ? 'features-visible' : ''}`}>
           {[
-            { icon: '🌍', title: 'Global Cuisines',   desc: 'Dishes from' + roundDownTo(STATS[1].value, STAT_ROUNDING) + '+ countries — India, Japan, Italy, Thailand, Jamaica and more.' },
+            { icon: '🌍', title: 'Global Cuisines',   desc: 'Dishes from ' + roundDownTo(STATS[1].value, STAT_ROUNDING) + '+ countries — India, Japan, Italy, Thailand, Jamaica and more.' },
             { icon: '🔍', title: 'Smart Filtering',   desc: 'Filter by spice, allergens, diet type, ingredients, country, and price.' },
             { icon: '🥗', title: 'Diet Friendly',     desc: 'Vegan, Vegetarian, Pescatarian, and Gluten-Free options clearly labelled.' },
             { icon: '💰', title: 'Great Value',       desc: 'Fair prices across every course — from starters all the way to desserts.' },
