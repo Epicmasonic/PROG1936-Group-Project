@@ -74,6 +74,7 @@ const Orders = () => {
   // before the Firestore data has arrived.
   const [orders, setOrders] = useState([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState('')
 
   // ── READ ────────────────────────────────────────────────────────────────
   // Fetching from Firestore is asynchronous, so it can't happen inline during
@@ -81,13 +82,19 @@ const Orders = () => {
   // right after the component first mounts.
   useEffect(() => {
     async function loadOrders() {
-      const snapshot = await getDocs(collection(db, 'orders'))
-      // Each document's ID lives outside its data, so it has to be merged in
-      // manually. Without it there'd be no way to target a specific order for
-      // the update and delete operations below.
-      const items = snapshot.docs.map(docSnap => ({ id: docSnap.id, ...docSnap.data() }))
-      setOrders(items)
-      setLoading(false)
+      try {
+        const snapshot = await getDocs(collection(db, 'orders'))
+        // Each document's ID lives outside its data, so it has to be merged in
+        // manually. Without it there'd be no way to target a specific order for
+        // the update and delete operations below.
+        const items = snapshot.docs.map(docSnap => ({ id: docSnap.id, ...docSnap.data() }))
+        setOrders(items)
+      } catch (err) {
+        console.error('Failed to load orders:', err)
+        setLoadError('Could not load your orders. Please refresh the page.')
+      } finally {
+        setLoading(false)
+      }
     }
     loadOrders()
   }, [])
@@ -102,16 +109,23 @@ const Orders = () => {
 
   // ── DELETE ──────────────────────────────────────────────────────────────
   const handleCancelOrder = async (orderId) => {
-    // Remove the document from Firestore...
-    await deleteDoc(doc(db, 'orders', orderId))
-    // ...then drop it from local state too, so the card disappears immediately
-    // instead of waiting for a page refresh.
-    setOrders(prev => prev.filter(o => o.id !== orderId))
+    try {
+      // Remove the document from Firestore...
+      await deleteDoc(doc(db, 'orders', orderId))
+      // ...then drop it from local state too, so the card disappears immediately
+      // instead of waiting for a page refresh.
+      setOrders(prev => prev.filter(o => o.id !== orderId))
+    } catch (err) {
+      console.error('Failed to cancel order:', err)
+      setLoadError('Could not cancel that order. Please try again.')
+    }
   }
 
   return (
     <div className="orders-page">
       <h1 className="orders-title">Orders</h1>
+
+      {loadError && <p className="orders-error">{loadError}</p>}
 
       {/* Conditional rendering: loading -> empty -> the actual list. The
           loading state matters because the Firestore fetch takes a moment,

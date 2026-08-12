@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import './Home.css'
 import data from '../data/db.json'
 
@@ -138,7 +139,7 @@ const Home = () => {
           </p>
 
           <div className="hero-actions">
-            <a href="/menu" className="btn-primary">Explore Menu 🍽️</a>
+            <Link to="/menu" className="btn-primary">Explore Menu 🍽️</Link>
             <a href="#features" className="btn-secondary">How it works</a>
           </div>
 
@@ -206,7 +207,7 @@ const Home = () => {
         <div className="cta-content">
           <h2>Ready to find your next favourite dish?</h2>
           <p>Browse our full menu and use our powerful filters to match exactly what you're craving.</p>
-          <a href="/menu" className="btn-primary btn-large">Go to Menu →</a>
+          <Link to="/menu" className="btn-primary btn-large">Go to Menu →</Link>
         </div>
       </section>
 

@@ -193,16 +193,22 @@ const Menu = () => {
   const navigate = useNavigate()
   const { cart, addToCart, addCartQty, removeFromCart, editingOrder, clearCart } = useCart()
   const [dishes, setDishes] = useState([])
+  const [loadError, setLoadError] = useState('')
   const { filters } = filtersData
 
   useEffect(() => {
     async function loadDishes() {
-      const snapshot = await getDocs(collection(db, 'menuItems'))
-      const items = snapshot.docs.map((docSnap) => ({
-        id: docSnap.id,
-        ...docSnap.data(),
-      }))
-      setDishes(items)
+      try {
+        const snapshot = await getDocs(collection(db, 'menuItems'))
+        const items = snapshot.docs.map((docSnap) => ({
+          id: docSnap.id,
+          ...docSnap.data(),
+        }))
+        setDishes(items)
+      } catch (err) {
+        console.error('Failed to load menu:', err)
+        setLoadError('Could not load the menu. Please refresh the page.')
+      }
     }
     loadDishes()
   }, [])
@@ -289,6 +295,12 @@ const Menu = () => {
         <div className="editing-order-banner">
           <span>Editing order <strong>{editingOrder.id}</strong> — add more dishes or adjust the cart, then head to checkout.</span>
           <button type="button" onClick={clearCart}>Cancel edit</button>
+        </div>
+      )}
+
+      {loadError && (
+        <div className="editing-order-banner">
+          <span>{loadError}</span>
         </div>
       )}
 

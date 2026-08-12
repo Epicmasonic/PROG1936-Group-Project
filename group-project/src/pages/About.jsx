@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './About.css'
 
 const About = () => {
@@ -12,8 +13,8 @@ const About = () => {
           </p>
 
           <div className="about-actions">
-            <a href="/menu" className="about-link primary">Explore the menu</a>
-            <a href="/" className="about-link secondary">Back to home</a>
+            <Link to="/menu" className="about-link primary">Explore the menu</Link>
+            <Link to="/" className="about-link secondary">Back to home</Link>
           </div>
         </div>
 
