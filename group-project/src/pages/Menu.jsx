@@ -36,7 +36,10 @@ const DIET_COLORS = {
 
 const COURSE_ICONS = { All: '🍽️', Breakfast: '🍳', Starter: '🥣', Main: '🍛', Dessert: '🍰' }
 
-const MAX_PRICE = 20
+// Upper bound of the price filter. Must stay at or above the most expensive
+// dish, otherwise anything costing more is permanently hidden — the slider
+// starts at this value and can't be raised past it.
+const MAX_PRICE = 25
 
 const CartItemRow = ({ item, onAddItem, onRemoveItem }) => (
   <div className="cart-item-row">
